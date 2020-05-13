@@ -10,15 +10,15 @@ module.exports = {
 };
 
 function find() {
-  return db("scheme");
+  return db("schemes");
 }
 
 function findById(id) {
-  return db("scheme").where("id", id).first();
+  return db("schemes").where("id", id).first();
 }
 
 function add(user) {
-  return db("scheme")
+  return db("schemes")
     .insert(user, "id")
     .then((ids) => {
       return findById(ids[0]);
@@ -31,11 +31,14 @@ findById  => a promise that resolves to a user
 add  => a promise that resolves to a user
 post
 */
+function findSteps(id) {
+  return db("steps").where("scheme_id", id);
+}
 
 function update(id, changes) {
-  return db("scheme").where({ id }).update(changes);
+  return db("schemes").where({ id }).update(changes);
 }
 
 function remove(id) {
-  return db("scheme").where({ id }).del();
+  return db("schemes").where({ id }).del();
 }
