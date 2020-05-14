@@ -42,13 +42,18 @@ function update(changes, id) {
   return db("schemes")
     .where({ id })
     .update(changes)
-    .then((changes) => {
+    .then(() => {
       return findById(id);
     });
 }
 
 function remove(id) {
-  return db("schemes").where({ id }).del();
+  return db("schemes")
+    .where({ id })
+    .first()
+    .then((scheme) => {
+      return db("schemes").where({ id: scheme.id }).first().del();
+    });
 }
 
 /*
