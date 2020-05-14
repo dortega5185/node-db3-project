@@ -18,7 +18,11 @@ where o.OrderDate < '2012-08-09';
 SELECT o.quantity, Product.ProductName
   FROM OrderDetail as o
   INNER JOIN Product on O.ProductId = Product.Id
-  WHERE o.OrderId = 10251 
+  WHERE o.OrderId = 10251
 
 -- Display the OrderID, Customer's Company Name and the employee's LastName for every order. All columns should be labeled clearly. Displays 16,789 records.
 
+SELECT o.Id as OrderId, Customer.CompanyName, Employee.LastName
+FROM 'Order' as o
+JOIN Employee on o.EmployeeId = Employee.Id
+JOIN Customer on o.CustomerId = Customer.Id;
